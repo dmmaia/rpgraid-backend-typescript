@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import { User } from "../models/User";
 import {uuid} from 'uuidv4';
 
-export class UserController {
-  async store(req: Request, res: Response): Promise<Response>{
+class UserController {
+  public async store(req: Request, res: Response): Promise<Response>{
     const { userName } = req.body;
 
     let user = await User.findOne({ userName });
@@ -21,3 +21,5 @@ export class UserController {
    }
   }
 }
+
+export default new UserController()
