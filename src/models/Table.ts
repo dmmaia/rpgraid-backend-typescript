@@ -3,14 +3,14 @@ import { Schema, model, Document} from 'mongoose';
 export interface ITable extends Document {
     _id: string;
     tableName: string;
-    userId: Schema.Types.ObjectId;
+    userId: string;
 };
 
 const TableSchema = new Schema({
     _id: {type: String, required: true},
     tableName: {type: String, required: true},
     userId: {
-        type: Schema.Types.ObjectId,
+        type: String||Schema.Types.ObjectId,
         ref: 'User'
     }
 });
