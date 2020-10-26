@@ -15,7 +15,7 @@ router.post('/tables', TableController.store);
 router.delete('/tables/:id', TableController.delete);
 
 router.get('/rolls/all/:tableId', RollController.all);
-router.post('rolls', RollController.create);
+router.post('/rolls', RollController.create);
 
 
 export { router }
