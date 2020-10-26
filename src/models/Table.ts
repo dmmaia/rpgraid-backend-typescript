@@ -13,6 +13,8 @@ const TableSchema = new Schema({
         type: String||Schema.Types.ObjectId,
         ref: 'User'
     }
+},{
+    timestamps: true
 });
 
 const Table = model<ITable>('Table', TableSchema);

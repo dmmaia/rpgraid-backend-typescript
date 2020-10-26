@@ -10,6 +10,8 @@ const UserSchema = new Schema({
   _id: {type: String, required: true},
   userName: {type: String, required: true},
   password: {type: String, required: true}
+},{
+  timestamps: true
 });
 
 const User = model<IUser>('User', UserSchema);
