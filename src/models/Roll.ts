@@ -1,14 +1,12 @@
 import { Schema, model, Document } from 'mongoose';
 
 export interface IRoll extends Document {
-  _id : string,
   userId : string,
   tableId : string,
-  roll : object[]
+  roll : string[]
 }
 
 const RollSchema = new Schema({
-  _id: {type: String, required: true},
   userId: {
     type: String||Schema.Types.ObjectId,
     ref: 'User'
@@ -18,4 +16,9 @@ const RollSchema = new Schema({
     ref: 'Table'
   },
   roll: {type: Array, required: true}
+},{
+  timestamps: true
 })
+
+const Roll = model<IRoll>('Roll', RollSchema);
+export { Roll }
