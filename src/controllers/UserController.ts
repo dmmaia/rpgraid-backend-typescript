@@ -46,7 +46,7 @@ class UserController {
     try {
       userDelete = await User.deleteOne({_id});
       userDelete = userDelete===null?ErrorEvent:userDelete;
-      let tableDelete = await Table.deleteMany({userId:_id});
+      const tableDelete = await Table.deleteMany({userId:_id});
 
       return res.json(userDelete).json(tableDelete);
     } catch (error) {
