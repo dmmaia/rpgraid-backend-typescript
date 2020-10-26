@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import { Roll } from '../models/Roll';
+import { User } from '../models/User';
+import { Table } from '../models/Table';
 
 
 class RollController{
@@ -7,8 +9,15 @@ class RollController{
     const { userId, tableId, roll } = req.body
 
     try {
-      const newRoll = await Roll.create({userId, tableId, roll})
-      return res.json(newRoll).status(201);
+      const findIfUserExists = await User.findById({_id:userId});
+      const findIfTableExists = await Table.findById({_id:tableId});
+
+      if(findIfUserExists===null||findIfTableExists===null){
+        return res.json({message:"User not found"}).status(400);
+      }else{
+        const newRoll = await Roll.create({userId, tableId, roll})
+        return res.json(newRoll).status(201);
+      }    
     } catch (error) {
       
     }
