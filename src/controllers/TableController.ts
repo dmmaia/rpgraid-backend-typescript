@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { ITable, Table } from '../models/Table';
+import { Roll } from '../models/Roll';
 import {uuid} from 'uuidv4';
 
 class TableController {
@@ -50,8 +51,9 @@ class TableController {
         const _id   = req.params.id;
 
         try {
-            let tableDelete = await Table.deleteOne({ _id })
-            return res.json(tableDelete);
+            const tableDelete = await Table.deleteOne({ _id })
+            let rollDelete = await Roll.deleteMany({tableId:_id})
+            return res.json(tableDelete).json(rollDelete);
         } catch (error) {
             return res.status(400).json({message: error.message || 'table not found'})
         }
