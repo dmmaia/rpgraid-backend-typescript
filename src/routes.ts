@@ -1,12 +1,18 @@
 import { Router } from "express";
+
+import authMiddleware from './middlewares/authorizathion'
+
 import TableController from "./controllers/TableController";
 import UserController from "./controllers/UserController";
-import RollController from './controllers/RollController'; 
+import RollController from './controllers/RollController';
+import SessionController from './controllers/SessionController';
 
 const router = Router()
 
-router.get('/users', UserController.findOne);
 router.post('/users', UserController.store);
+router.post('/sessions', SessionController.index);
+router.use(authMiddleware);
+router.get('/users', UserController.findOne);
 router.delete('/users/:id', UserController.delete);
 
 router.get('/tables/all/:userId', TableController.all);
